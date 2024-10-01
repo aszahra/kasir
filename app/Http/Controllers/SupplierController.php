@@ -79,7 +79,7 @@ class SupplierController extends Controller
      */
     public function destroy(string $id)
     {
-        $data = Supplier::findOrFail($id);
+         $data = Supplier::findOrFail($id);
         $data->delete();
         return back()->with('message_delete','Data Suppier Sudah dihapus');
     }

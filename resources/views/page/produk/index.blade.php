@@ -9,39 +9,46 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-4">
-                    <div>DATA SUPPLIER</div>
+                    <div>DATA PRODUK</div>
                 </div>
                 <div class="p-6 text-gray-900 dark:text-gray-100 flex gap-5">
-                    {{-- FORM ADD SUPPLIER --}}
+                    {{-- FORM ADD PRODUK --}}
                     <div class="w-full bg-gray-100 p-4 rounded-xl">
                         <div class="mb-5">
-                            INPUT DATA SUPPLIER
+                            INPUT DATA PRODUK
                         </div>
-                        <form action="{{ route('supplier.store') }}" method="post">
+                        <form action="{{ route('produk.store') }}" method="post">
                             @csrf
                             <div class="mb-5">
                                 <label for="base-input"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Supplier</label>
-                                <input name="supplier" type="text" id="base-input"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Id
+                                    Konsinyasi</label>
+                                <input name="id_konsinyasi" type="text" id="base-input"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             </div>
                             <div class="mb-5">
                                 <label for="base-input"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">No HP</label>
-                                <input name="no_hp" type="text" id="base-input"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Produk</label>
+                                <input name="produk" type="text" id="base-input"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             </div>
                             <div class="mb-5">
                                 <label for="base-input"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Alamat</label>
-                                <textarea name="alamat" type="text" id="base-input"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea>
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Harga</label>
+                                <input name="harga" type="text" id="base-input"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            </div>
+                            <div class="mb-5">
+                                <label for="base-input"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Stok</label>
+                                <input name="stok" type="text" id="base-input"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             </div>
                             <button type="submit"
                                 class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">SIMPAN</button>
                         </form>
                     </div>
-                    {{-- TABLE SUPPLIER --}}
+                    {{-- TABLE PRODUK --}}
                     <div class="w-full">
                         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
                             <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -52,13 +59,16 @@
                                             NO
                                         </th>
                                         <th scope="col" class="px-6 py-3">
-                                            SUPPLIER
+                                            ID KONSINYASI
                                         </th>
                                         <th scope="col" class="px-6 py-3">
-                                            NO HP
+                                            PRODUK
                                         </th>
                                         <th scope="col" class="px-6 py-3">
-                                            ALAMAT
+                                            HARGA
+                                        </th>
+                                        <th scope="col" class="px-6 py-3">
+                                            STOK
                                         </th>
                                         <th scope="col" class="px-6 py-3">
 
@@ -69,32 +79,36 @@
                                     @php
                                         $no = 1;
                                     @endphp
-                                    @foreach ($supplier as $key => $k)
+                                    @foreach ($produk as $key => $k)
                                         <tr
                                             class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                             <th scope="row"
                                                 class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                                {{ $supplier->perPage() * ($supplier->currentPage() - 1) + $key + 1 }}
+                                                {{ $produk->perPage() * ($produk->currentPage() - 1) + $key + 1 }}
                                             </th>
                                             <td class="px-6 py-4">
-                                                {{ $k->supplier }}
+                                                {{ $k->id_konsinyasi }}
                                             </td>
                                             <td class="px-6 py-4">
-                                                {{ $k->no_hp }}
+                                                {{ $k->produk }}
                                             </td>
                                             <td class="px-6 py-4">
-                                                {{ $k->alamat }}
+                                                {{ $k->harga }}
+                                            </td>
+                                            <td class="px-6 py-4">
+                                                {{ $k->stok }}
                                             </td>
                                             <td class="px-6 py-4">
                                                 <button type="button" data-id="{{ $k->id }}"
-                                                    data-modal-target="sourceModal" data-supplier="{{ $k->supplier }}"
-                                                    data-no_hp="{{ $k->no_hp }}" data-alamat="{{ $k->alamat }}"
-                                                    onclick="editSourceModal(this)"
+                                                    data-modal-target="sourceModal"
+                                                    data-id_konsinyasi="{{ $k->id_konsinyasi }}"
+                                                    data-produk="{{ $k->produk }}" data-harga="{{ $k->harga }}"
+                                                    data-stok="{{ $k->stok }}" onclick="editSourceModal(this)"
                                                     class="bg-amber-500 hover:bg-amber-600 px-3 py-1 rounded-md text-xs text-white">
                                                     Edit
                                                 </button>
                                                 <button
-                                                    onclick="return supplierDelete('{{ $k->id }}','{{ $k->supplier }}')"
+                                                    onclick="return produkDelete('{{ $k->id }}','{{ $k->produk }}')"
                                                     class="bg-red-500 hover:bg-bg-red-300 px-3 py-1 rounded-md text-xs text-white">Delete</button>
                                             </td>
                                         </tr>
@@ -103,7 +117,7 @@
                             </table>
                         </div>
                         <div class="mt-4">
-                            {{ $supplier->links() }}
+                            {{ $produk->links() }}
                         </div>
                     </div>
                 </div>
@@ -128,22 +142,29 @@
                     @csrf
                     <div class="flex flex-col  p-4 space-y-6">
                         <div class="">
-                            <label for="text" class="block mb-2 text-sm font-medium text-gray-900">Supplier</label>
-                            <input type="text" id="supplier" name="supplier"
+                            <label for="text" class="block mb-2 text-sm font-medium text-gray-900">Id
+                                Konsinyasi</label>
+                            <input type="text" id="id_konsinyasi" name="id_konsinyasi"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 placeholder="Masukan kelas disini...">
                         </div>
                         <div class="">
-                            <label for="text" class="block mb-2 text-sm font-medium text-gray-900">No HP</label>
-                            <input type="text" id="no_hp" name="no_hp"
+                            <label for="text" class="block mb-2 text-sm font-medium text-gray-900">Produk</label>
+                            <input type="text" id="produk" name="produk"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 placeholder="Masukan kelas disini...">
                         </div>
                         <div class="">
-                            <label for="text" class="block mb-2 text-sm font-medium text-gray-900">Alamat</label>
-                            <textarea type="text" id="alamat" name="alamat"
+                            <label for="text" class="block mb-2 text-sm font-medium text-gray-900">Harga</label>
+                            <input type="text" id="harga" name="harga"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Masukan kelas disini..."></textarea>
+                                placeholder="Masukan kelas disini...">
+                        </div>
+                        <div class="">
+                            <label for="text" class="block mb-2 text-sm font-medium text-gray-900">Stok</label>
+                            <input type="text" id="stok" name="stok"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                placeholder="Masukan kelas disini...">
                         </div>
                     </div>
                     <div class="flex items-center p-4 space-x-2 border-t border-gray-200 rounded-b">
@@ -162,17 +183,19 @@
         const formModal = document.getElementById('formSourceModal');
         const modalTarget = button.dataset.modalTarget;
         const id = button.dataset.id;
-        const supplier = button.dataset.supplier;
-        const no_hp = button.dataset.no_hp;
-        const alamat = button.dataset.alamat;
-        let url = "{{ route('supplier.update', ':id') }}".replace(':id', id);
+        const id_konsinyasi = button.dataset.id_konsinyasi;
+        const produk = button.dataset.produk;
+        const harga = button.dataset.harga;
+        const stok = button.dataset.stok;
+        let url = "{{ route('produk.update', ':id') }}".replace(':id', id);
 
         let status = document.getElementById(modalTarget);
-        document.getElementById('title_source').innerText = `UPDATE SUPPLIER ${supplier}`;
+        document.getElementById('title_source').innerText = `UPDATE PRODUK ${produk}`;
 
-        document.getElementById('supplier').value = supplier;
-        document.getElementById('no_hp').value = no_hp;
-        document.getElementById('alamat').value = alamat;
+        document.getElementById('id_konsinyasi').value = id_konsinyasi;
+        document.getElementById('produk').value = produk;
+        document.getElementById('harga').value = harga;
+        document.getElementById('stok').value = stok;
 
         document.getElementById('formSourceButton').innerText = 'Simpan';
         document.getElementById('formSourceModal').setAttribute('action', url);
@@ -196,22 +219,22 @@
         status.classList.toggle('hidden');
     }
 
-    const supplierDelete = async (id, supplier) => {
-            let tanya = confirm(`Apakah anda yakin untuk menghapus Supplier ${supplier} ?`);
-            if (tanya) {
-                await axios.post(`/supplier/${id}`, {
-                        '_method': 'DELETE',
-                        '_token': $('meta[name="csrf-token"]').attr('content')
-                    })
-                    .then(function(response) {
-                        // Handle success
-                        location.reload();
-                    })
-                    .catch(function(error) {
-                        // Handle error
-                        alert('Error deleting record');
-                        console.log(error);
-                    });
-            }
+    const produkDelete = async (id, produk) => {
+        let tanya = confirm(`Apakah anda yakin untuk menghapus Produk ${produk} ?`);
+        if (tanya) {
+            await axios.post(`/produk/${id}`, {
+                    '_method': 'DELETE',
+                    '_token': $('meta[name="csrf-token"]').attr('content')
+                })
+                .then(function(response) {
+                    // Handle success
+                    location.reload();
+                })
+                .catch(function(error) {
+                    // Handle error
+                    alert('Error deleting record');
+                    console.log(error);
+                });
         }
+    }
 </script>

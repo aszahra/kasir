@@ -2,20 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Konsumen;
 use Illuminate\Http\Request;
 
-class KonsumenController extends Controller
+class KonsinyasiController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $konsumen = Konsumen::paginate(5);
-        return view('page.konsumen.index')->with([
-            'konsumen' => $konsumen
-        ]);
+        //
     }
 
     /**
@@ -31,14 +27,7 @@ class KonsumenController extends Controller
      */
     public function store(Request $request)
     {
-        $data = [
-            'konsumen' => $request->input('konsumen'),
-            'status' => $request->input('status'),
-        ];
-
-        Konsumen::create($data);
-
-        return back()->with('message_delete', 'Data Konsumen Sudah dihapus');
+        //
     }
 
     /**
@@ -62,14 +51,7 @@ class KonsumenController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $data = [
-            'konsumen' => $request->input('konsumen'),
-            'status' => $request->input('status'),
-        ];
-
-        $datas = Konsumen::findOrFail($id);
-        $datas->update($data);
-        return back()->with('message_delete', 'Data Konsumen Sudah dihapus');
+        //
     }
 
     /**
@@ -77,8 +59,6 @@ class KonsumenController extends Controller
      */
     public function destroy(string $id)
     {
-        $data = Konsumen::findOrFail($id);
-        $data->delete();
-        return back()->with('message_delete','Data Konsumen Sudah dihapus');
+        //
     }
 }

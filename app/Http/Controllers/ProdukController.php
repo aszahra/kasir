@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Konsumen;
+use App\Models\Produk;
 use Illuminate\Http\Request;
 
-class KonsumenController extends Controller
+class ProdukController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $konsumen = Konsumen::paginate(5);
-        return view('page.konsumen.index')->with([
-            'konsumen' => $konsumen
+        $produk = Produk::paginate(5);
+        return view('page.produk.index')->with([
+            'produk' => $produk,
         ]);
     }
 
@@ -32,13 +32,15 @@ class KonsumenController extends Controller
     public function store(Request $request)
     {
         $data = [
-            'konsumen' => $request->input('konsumen'),
-            'status' => $request->input('status'),
+            'id_konsinyasi' => $request->input('id_konsinyasi'),
+            'produk' => $request->input('produk'),
+            'harga' => $request->input('harga'),
+            'stok' => $request->input('stok')
         ];
 
-        Konsumen::create($data);
+        Produk::create($data);
 
-        return back()->with('message_delete', 'Data Konsumen Sudah dihapus');
+        return back()->with('message_delete', 'Data Produk Sudah dihapus');
     }
 
     /**
@@ -63,13 +65,15 @@ class KonsumenController extends Controller
     public function update(Request $request, string $id)
     {
         $data = [
-            'konsumen' => $request->input('konsumen'),
-            'status' => $request->input('status'),
+            'id_konsinyasi' => $request->input('id_konsinyasi'),
+            'produk' => $request->input('produk'),
+            'harga' => $request->input('harga'),
+            'stok' => $request->input('stok'),
         ];
 
-        $datas = Konsumen::findOrFail($id);
+        $datas = Produk::findOrFail($id);
         $datas->update($data);
-        return back()->with('message_delete', 'Data Konsumen Sudah dihapus');
+        return back()->with('message_delete', 'Data Produk Sudah dihapus');
     }
 
     /**
@@ -77,8 +81,8 @@ class KonsumenController extends Controller
      */
     public function destroy(string $id)
     {
-        $data = Konsumen::findOrFail($id);
+        $data = Produk::findOrFail($id);
         $data->delete();
-        return back()->with('message_delete','Data Konsumen Sudah dihapus');
+        return back()->with('message_delete','Data Produk Sudah dihapus');
     }
 }
