@@ -12,5 +12,6 @@ class Konsinyasi extends Model
     protected $fillable = [
         'konsinyasi'
     ];
+    
     protected $table = 'konsinyasi';
 }
