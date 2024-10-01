@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Konsinyasi;
 use Illuminate\Http\Request;
 
 class KonsinyasiController extends Controller
@@ -11,7 +12,10 @@ class KonsinyasiController extends Controller
      */
     public function index()
     {
-        //
+        $konsinyasi = Konsinyasi::paginate(5);
+        return view('page.konsinyasi.index')->with([
+            'konsinyasi' => $konsinyasi,
+        ]);
     }
 
     /**
@@ -27,7 +31,13 @@ class KonsinyasiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = [
+            'konsinyasi' => $request->input('konsinyasi'),
+        ];
+
+        Konsinyasi::create($data);
+
+        return back()->with('message_create', 'Data Konsinyasi Sudah ditambahkan');
     }
 
     /**
@@ -51,7 +61,14 @@ class KonsinyasiController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $data = [
+            'konsinyasi' => $request->input('konsinyasi'),
+        ];
+
+        $datas = Konsinyasi::findOrFail($id);
+        $datas->update($data);
+
+        return back()->with('message_create', 'Data Konsinyasi Sudah ditambahkan');
     }
 
     /**
@@ -59,6 +76,8 @@ class KonsinyasiController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $data = Konsinyasi::findOrFail($id);
+        $data->delete();
+        return back()->with('message_delete','Data Konsinyasi Sudah dihapus');
     }
 }
