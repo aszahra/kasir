@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('konsinyasi_produk', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_konsinyasi');
-            $table->integer('id_produk');
+            $table->foreign('id_konsinyasi');
+            $table->foreign('id_produk');
             $table->integer('stok');
             $table->date('tgl_konsinyasi');
             $table->timestamps();

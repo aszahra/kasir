@@ -17,4 +17,10 @@ class KonsinyasiProduk extends Model
     ];
 
     protected $table = 'konsinyasiProduk';
+
+    public function konsinyasi()
+    {
+        return $this->belongsTo(Konsinyasi::class, 'id_konsinyasi', 'id_konsinyasi');
+        return $this->belongsTo(Produk::class, 'id_produk', 'id_produk');
+    } 
 }
