@@ -188,7 +188,7 @@
         const harga = button.dataset.harga;
         const stok = button.dataset.stok;
         let url = "{{ route('produk.update', ':id') }}".replace(':id', id);
-
+        
         let status = document.getElementById(modalTarget);
         document.getElementById('title_source').innerText = `UPDATE PRODUK ${produk}`;
 

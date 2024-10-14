@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\KonsinyasiProduk;
 use Illuminate\Http\Request;
 
 class KonsinyasiProdukController extends Controller
@@ -11,7 +12,10 @@ class KonsinyasiProdukController extends Controller
      */
     public function index()
     {
-        return view('page.konsinyasiProduk.index');
+        $konsinyasiproduk = KonsinyasiProduk::paginate(5);
+        return view('page.konsinyasiproduk.index')->with([
+            'konsinyasiproduk' => $konsinyasiproduk,
+        ]);
     }
 
     /**
@@ -27,7 +31,16 @@ class KonsinyasiProdukController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = [
+            'id_konsinyasi' => $request->input('id_konsinyasi'),
+            'id_produk' => $request->input('id_produk'),
+            'stok' => $request->input('stok'),
+            'tgl_konsinyasi' => $request->input('tgl_konsinyasi'),
+        ];
+
+        KonsinyasiProduk::create($data);
+
+        return back()->with('message_create', 'Data Konsinyasi Produk Sudah ditambahkan');
     }
 
     /**
@@ -51,7 +64,17 @@ class KonsinyasiProdukController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $data = [
+            'id_konsinyasi' => $request->input('id_konsinyasi'),
+            'id_produk' => $request->input('id_produk'),
+            'stok' => $request->input('stok'),
+            'tgl_produk' => $request->input('tgl_produk'),
+        ];
+
+        $datas = KonsinyasiProduk::findOrFail($id);
+        $datas->update($data);
+
+        return back()->with('message_create', 'Data Konsinyasi Produk Sudah ditambahkan');
     }
 
     /**
@@ -59,6 +82,8 @@ class KonsinyasiProdukController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $data = KonsinyasiProduk::findOrFail($id);
+        $data->delete();
+        return back()->with('message_delete','Data Konsinyasi Produk Sudah dihapus');
     }
 }

@@ -21,8 +21,26 @@
                             @csrf
                             <div class="mb-5">
                                 <label for="base-input"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">ID Konsinyasi</label>
+                                <input name="id_konsinyasi" type="integer" id="base-input"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            </div>
+                            <div class="mb-5">
+                                <label for="base-input"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">ID Produk</label>
+                                <input name="id_produk" type="integer" id="base-input"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            </div>
+                            <div class="mb-5">
+                                <label for="base-input"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">STOK</label>
-                                <input name="konsinyasiproduk" type="integer" id="base-input"
+                                <input name="stok" type="integer" id="base-input"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            </div>
+                            <div class="mb-5">
+                                <label for="base-input"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal Konsinyasi</label>
+                                <input name="tgl_konsinyasi" type="date" id="base-input"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             </div>
                             <button type="submit"
@@ -37,7 +55,16 @@
                                     class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                     <tr>
                                         <th scope="col" class="px-6 py-3">
-                                            KONSINYASI
+                                            ID KONSINYASI
+                                        </th>
+                                        <th scope="col" class="px-6 py-3">
+                                            ID PRODUK
+                                        </th>
+                                        <th scope="col" class="px-6 py-3">
+                                            STOK
+                                        </th>
+                                        <th scope="col" class="px-6 py-3">
+                                            TANGGAL KONSINYASI
                                         </th>
                                         <th scope="col" class="px-6 py-3">
 
@@ -48,25 +75,36 @@
                                     @php
                                         $no = 1;
                                     @endphp
-                                    @foreach ($konsinyasi as $key => $k)
+                                    @foreach ($konsinyasiproduk as $key => $k)
                                         <tr
                                             class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                             <th scope="row"
                                                 class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                                {{ $konsinyasi->perPage() * ($konsinyasi->currentPage() - 1) + $key + 1 }}
+                                                {{ $konsinyasiproduk->perPage() * ($konsinyasiproduk->currentPage() - 1) + $key + 1 }}
                                             </th>
                                             <td class="px-6 py-4">
-                                                {{ $k->konsinyasi }}
+                                                {{ $k->id_konsinyasi }}
+                                            </td>
+                                            <td class="px-6 py-4">
+                                                {{ $k->id_produk }}
+                                            </td>
+                                            <td class="px-6 py-4">
+                                                {{ $k->stok }}
+                                            </td>
+                                            <td class="px-6 py-4">
+                                                {{ $k->tgl_konsinyasi }}
                                             </td>
                                             <td class="px-6 py-4">
                                                 <button type="button" data-id="{{ $k->id }}"
-                                                    data-modal-target="sourceModal" data-konsinyasi="{{ $k->konsinyasi }}"
-                                                    onclick="editSourceModal(this)"
+                                                    data-modal-target="sourceModal"
+                                                    data-id_konsinyasi="{{ $k->id_konsinyasi }}"
+                                                    data-id_produk="{{ $k->id_produk }}" data-stok="{{ $k->stok }}"
+                                                    data-tgl_konsinyasi="{{ $k->tgl_konsinyasi }}" onclick="editSourceModal(this)"
                                                     class="bg-amber-500 hover:bg-amber-600 px-3 py-1 rounded-md text-xs text-white">
                                                     Edit
                                                 </button>
                                                 <button
-                                                    onclick="return konsinyasiDelete('{{ $k->id }}','{{ $k->konsinyasi }}')"
+                                                    onclick="return konsinyasiDelete('{{ $k->id }}','{{ $k->konsinyasiproduk }}')"
                                                     class="bg-red-500 hover:bg-bg-red-300 px-3 py-1 rounded-md text-xs text-white">Delete</button>
                                             </td>
                                         </tr>
@@ -75,7 +113,7 @@
                             </table>
                         </div>
                         <div class="mt-4">
-                            {{ $konsinyasi->links() }}
+                            {{ $konsinyasiproduk->links() }}
                         </div>
                     </div>
                 </div>
@@ -100,10 +138,28 @@
                     @csrf
                     <div class="flex flex-col  p-4 space-y-6">
                         <div class="">
-                            <label for="text" class="block mb-2 text-sm font-medium text-gray-900">Konsinyasi</label>
-                            <input type="text" id="konsinyasi" name="konsinyasi"
+                            <label for="text" class="block mb-2 text-sm font-medium text-gray-900">ID Konsinyasi</label>
+                            <input type="number" id="id_konsinyasi" name="id_konsinyasi"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Masukan Konsinyasi disini...">
+                                placeholder="Masukan ID Konsinyasi Produk disini...">
+                        </div>
+                        <div class="">
+                            <label for="text" class="block mb-2 text-sm font-medium text-gray-900">ID Produk</label>
+                            <input type="number" id="id_produk" name="id_produk"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                placeholder="Masukan ID Produk disini...">
+                        </div>
+                        <div class="">
+                            <label for="text" class="block mb-2 text-sm font-medium text-gray-900">Stok</label>
+                            <input type="number" id="stok" name="stok"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                placeholder="Masukan Stok Produk disini...">
+                        </div>
+                        <div class="">
+                            <label for="text" class="block mb-2 text-sm font-medium text-gray-900">Tanggal Konsinyasi</label>
+                            <input type="date" id="tgl_konsinyasi" name="tgl_konsinyasi"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                placeholder="Masukan Tanggal Konsinyasi Produk disini...">
                         </div>
                     </div>
                     <div class="flex items-center p-4 space-x-2 border-t border-gray-200 rounded-b">
@@ -122,13 +178,20 @@
         const formModal = document.getElementById('formSourceModal');
         const modalTarget = button.dataset.modalTarget;
         const id = button.dataset.id;
-        const konsinyasi = button.dataset.konsinyasi;
-        let url = "{{ route('konsinyasi.update', ':id') }}".replace(':id', id);
+        const id_konsinyasi = button.dataset.id_konsinyasi;
+        const id_produk = button.dataset.id_produk;
+        const stok = button.dataset.stok;
+        const tgl_konsinyasi = button.dataset.tgl_konsinyasi;
+        let url = "{{ route('konsinyasiproduk.update', ':id') }}".replace(':id', id);
 
         let status = document.getElementById(modalTarget);
-        document.getElementById('title_source').innerText = `UPDATE KONSINYASI ${konsinyasi}`;
+        document.getElementById('title_source').innerText = `UPDATE KONSINYASI PRODUK`;
+        
 
-        document.getElementById('konsinyasi').value = konsinyasi;
+        document.getElementById('id_konsinyasi').value = id_konsinyasi;
+        document.getElementById('id_produk').value = id_produk;
+        document.getElementById('stok').value = stok;
+        document.getElementById('tgl_konsinyasi').value = tgl_konsinyasi;
 
         document.getElementById('formSourceButton').innerText = 'Simpan';
         document.getElementById('formSourceModal').setAttribute('action', url);
@@ -152,10 +215,10 @@
         status.classList.toggle('hidden');
     }
 
-    const konsinyasiDelete = async (id, konsinyasi) => {
-            let tanya = confirm(`Apakah anda yakin untuk menghapus Konsinyasi ${konsinyasi} ?`);
+    const konsinyasiDelete = async (id, konsinyasiproduk) => {
+            let tanya = confirm(`Apakah anda yakin untuk menghapus Konsinyasi Produk ${konsinyasiproduk} ?`);
             if (tanya) {
-                await axios.post(`/konsinyasi/${id}`, {
+                await axios.post(`/konsinyasiproduk/${id}`, {
                         '_method': 'DELETE',
                         '_token': $('meta[name="csrf-token"]').attr('content')
                     })

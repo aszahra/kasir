@@ -16,11 +16,11 @@ class KonsinyasiProduk extends Model
         'tgl_konsinyasi'
     ];
 
-    protected $table = 'konsinyasiProduk';
+    protected $table = 'konsinyasiproduk';
 
     public function konsinyasi()
     {
-        return $this->belongsTo(Konsinyasi::class, 'id_konsinyasi', 'id_konsinyasi');
-        return $this->belongsTo(Produk::class, 'id_produk', 'id_produk');
+        return $this->belongsTo(Konsinyasi::class, 'id_konsinyasi', 'id');
+        return $this->belongsTo(Produk::class, 'id_produk', 'id');
     } 
 }
