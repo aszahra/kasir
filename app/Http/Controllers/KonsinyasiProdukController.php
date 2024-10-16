@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Konsinyasi;
 use App\Models\KonsinyasiProduk;
+use App\Models\Produk;
 use Illuminate\Http\Request;
 
 class KonsinyasiProdukController extends Controller
@@ -13,8 +15,12 @@ class KonsinyasiProdukController extends Controller
     public function index()
     {
         $konsinyasiproduk = KonsinyasiProduk::paginate(5);
+        $konsinyasi = Konsinyasi::all();
+        $produk = Produk::all();
         return view('page.konsinyasiproduk.index')->with([
             'konsinyasiproduk' => $konsinyasiproduk,
+            'konsinyasi' => $konsinyasi,
+            'produk' => $produk
         ]);
     }
 
@@ -65,8 +71,8 @@ class KonsinyasiProdukController extends Controller
     public function update(Request $request, string $id)
     {
         $data = [
-            'id_konsinyasi' => $request->input('id_konsinyasi'),
-            'id_produk' => $request->input('id_produk'),
+            'id_konsinyasi' => $request->input('id_konsinyasi_edit'),
+            'id_produk' => $request->input('id_produk_edit'),
             'stok' => $request->input('stok'),
             'tgl_produk' => $request->input('tgl_produk'),
         ];

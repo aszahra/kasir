@@ -21,6 +21,10 @@ class KonsinyasiProduk extends Model
     public function konsinyasi()
     {
         return $this->belongsTo(Konsinyasi::class, 'id_konsinyasi', 'id');
+    } 
+    
+    public function Produk()
+    {
         return $this->belongsTo(Produk::class, 'id_produk', 'id');
     } 
 }
