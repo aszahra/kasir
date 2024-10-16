@@ -10,7 +10,6 @@ class Produk extends Model
     use HasFactory;
 
     protected $fillable = [
-        'id_konsinyasi',
         'produk',
         'harga',
         'stok'
@@ -20,6 +19,6 @@ class Produk extends Model
 
     public function konsinyasiproduk()
     {
-        return $this->hasMany(KonsinyasiProduk::class, 'id_konsinyasi');
+        return $this->hasMany(KonsinyasiProduk::class, 'id_konsinyasi', 'id');
     } 
 }

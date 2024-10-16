@@ -21,13 +21,6 @@
                             @csrf
                             <div class="mb-5">
                                 <label for="base-input"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Id
-                                    Konsinyasi</label>
-                                <input name="id_konsinyasi" type="text" id="base-input"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                            </div>
-                            <div class="mb-5">
-                                <label for="base-input"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Produk</label>
                                 <input name="produk" type="text" id="base-input"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -59,9 +52,6 @@
                                             NO
                                         </th>
                                         <th scope="col" class="px-6 py-3">
-                                            ID KONSINYASI
-                                        </th>
-                                        <th scope="col" class="px-6 py-3">
                                             PRODUK
                                         </th>
                                         <th scope="col" class="px-6 py-3">
@@ -86,9 +76,6 @@
                                                 class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                                 {{ $produk->perPage() * ($produk->currentPage() - 1) + $key + 1 }}
                                             </th>
-                                            <td class="px-6 py-4">
-                                                {{ $k->id_konsinyasi }}
-                                            </td>
                                             <td class="px-6 py-4">
                                                 {{ $k->produk }}
                                             </td>
@@ -188,7 +175,7 @@
         const harga = button.dataset.harga;
         const stok = button.dataset.stok;
         let url = "{{ route('produk.update', ':id') }}".replace(':id', id);
-        
+
         let status = document.getElementById(modalTarget);
         document.getElementById('title_source').innerText = `UPDATE PRODUK ${produk}`;
 
