@@ -91,6 +91,8 @@ class KonsinyasiProdukController extends Controller
             'tgl_produk' => $request->input('tgl_produk'),
         ];
 
+        
+
         $datas = KonsinyasiProduk::findOrFail($id);
         $datas->update($data);
 
@@ -102,6 +104,19 @@ class KonsinyasiProdukController extends Controller
      */
     public function destroy(string $id)
     {
+        $dataKonsinyasiP = KonsinyasiProduk::where('id', $id)->first();
+        $id_produk = $dataKonsinyasiP->id_produk;
+        $stokKonsinyasiP = $dataKonsinyasiP->stok;
+                
+        $produk = Produk::where('id', $id_produk)->first();
+        $stokProduk = $produk->stok;
+        $dataProduk = [
+            'stok' => $stokProduk - $stokKonsinyasiP
+        ];
+
+        $updateProduk = Produk::findOrFail($id_produk);
+        $updateProduk->update($dataProduk);
+
         $data = KonsinyasiProduk::findOrFail($id);
         $data->delete();
         return back()->with('message_delete','Data Konsinyasi Produk Sudah dihapus');
