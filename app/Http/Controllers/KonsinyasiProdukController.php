@@ -44,6 +44,20 @@ class KonsinyasiProdukController extends Controller
             'tgl_konsinyasi' => $request->input('tgl_konsinyasi'),
         ];
 
+        $id_produk = $request->input('id_produk');
+        $stokKonsinyasi = $request->input('stok');
+
+        $produk = Produk::where('id', $id_produk)->first();
+        $stokProduk = $produk->stok;
+        // dd($stokProduk);
+
+        $dataProduk = [
+            'stok' => $stokProduk + $stokKonsinyasi
+        ];
+
+        $updateProduk = Produk::findOrFail($id_produk);
+        $updateProduk->update($dataProduk);
+        
         KonsinyasiProduk::create($data);
 
         return back()->with('message_create', 'Data Konsinyasi Produk Sudah ditambahkan');
