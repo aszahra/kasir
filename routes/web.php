@@ -17,6 +17,7 @@ Route::resource('supplier', SupplierController::class)->middleware('auth');
 Route::resource('produk', ProdukController::class)->middleware('auth');
 Route::resource('konsinyasi', KonsinyasiController::class)->middleware('auth');
 Route::resource('konsinyasiproduk', KonsinyasiProdukController::class)->middleware('auth');
+Route::resource('penjualan', KonsinyasiProdukController::class)->middleware('auth');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

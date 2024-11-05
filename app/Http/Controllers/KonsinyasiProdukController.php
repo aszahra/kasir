@@ -88,13 +88,32 @@ class KonsinyasiProdukController extends Controller
             'id_konsinyasi' => $request->input('id_konsinyasi_edit'),
             'id_produk' => $request->input('id_produk_edit'),
             'stok' => $request->input('stok'),
-            'tgl_produk' => $request->input('tgl_produk'),
+            'tgl_konsinyasi' => $request->input('tgl_konsinyasi'),
         ];
 
-        
+        $id_produk = $request->input('id_produk_edit');
+        $stokKonsinyasiP = $request->input('stok');
 
-        $datas = KonsinyasiProduk::findOrFail($id);
-        $datas->update($data);
+        $produkKonsinyasi = KonsinyasiProduk::where('id', $id)->first();
+        $stokLama = $produkKonsinyasi->stok;
+
+        if ($stokLama < $stokKonsinyasiP) {
+            $tambahStok = $stokKonsinyasiP - $stokLama;
+            $stokUpdate = $stokLama + $tambahStok;
+        }else{
+            $kurangiStok = $stokLama - $stokKonsinyasiP;
+            $stokUpdate = $stokLama - $kurangiStok;
+        }
+
+        $dataProduk = [
+            'stok' => $stokUpdate
+        ];
+
+        $updateProduk = Produk::findOrFail($id_produk);
+        $updateProduk->update($dataProduk);
+
+        $konsinyasiProduk = KonsinyasiProduk::findOrFail($id);
+        $konsinyasiProduk->update($data);
 
         return back()->with('message_create', 'Data Konsinyasi Produk Sudah ditambahkan');
     }
