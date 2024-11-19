@@ -36,13 +36,14 @@
                                 Pembelian</label>
                             <select class="js-example-placeholder-single js-states form-control w-full m-6"
                                 id="status_pembelian" name="status_pembelian" data-placeholder="Pilih Status Pembelian">
-                                <option value="">Pilih...</option>
+                                <option value="" disabled selected>Pilih...</option>
                                 <option value="LUNAS">LUNAS</option>
                                 <option value="PIUTANG">PIUTANG</option>
                             </select>
                         </div>
-                        <div class="flex gap-5 w-full">
-                            
+                        <div class="flex gap-5 w-full bg-gray-100 p-4 items-center justify-between rounded-xl mb-2">
+                            <div>DETAIL</div>
+                            <div><button id="addRowBtn" class="bg-sky-400 hover:bg-sky-500 text-white px-2 rounded-xl"> Add Row</button></div>
                         </div>
                         <button type="submit"
                             class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
