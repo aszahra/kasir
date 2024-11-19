@@ -45,6 +45,34 @@
                             <div>DETAIL</div>
                             <div><button id="addRowBtn" class="bg-sky-400 hover:bg-sky-500 text-white px-2 rounded-xl"> Add Row</button></div>
                         </div>
+                        <div class="border border-2 rounded-xl p-2 mb-2" id="produkContainer">
+                            <div class="border-2 flex gap-5 p-2 mb-2 rounded-xl">
+                                <div class="mb-5 w-full">
+                                    <label for="produk"
+                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Produk</label>
+                                    <select class="js-example-placeholder-single js-states form-control w-full m-6"
+                                        id="produk" name="produk" data-placeholder="Pilih Produk">
+                                        <option value="" disabled selected>Pilih...</option>
+                                        <option value="LUNAS">LUNAS</option>
+                                        <option value="PIUTANG">PIUTANG</option>
+                                    </select>
+                                </div>
+                                <div class="mb-5 w-full">
+                                    <label for="harga"
+                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Harga</label>
+                                    <input type="number" id="harga" name="harga"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        required readonly />
+                                </div>
+                                <div class="mb-5 w-full">
+                                    <label for="qty"
+                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Qty</label>
+                                    <input type="number" id="qty" name="qty"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        required />
+                                </div>
+                            </div>
+                        </div>
                         <button type="submit"
                             class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
                     </form>
