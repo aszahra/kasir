@@ -102,7 +102,42 @@
 
         function addRow() {
             rowCount++;
-            const newRow = '<div>coba</div>';
+            const newRow = `<div class="border-2 flex gap-5 p-2 mb-2 rounded-xl">
+                                <div class="mb-5 w-full">
+                                    <label for="produk"
+                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Produk</label>
+                                    <select class="js-example-placeholder-single js-states form-control w-full m-6"
+                                        id="produk" name="produk" data-placeholder="Pilih Produk">
+                                        <option value="" disabled selected>Pilih...</option>
+                                        <option value="LUNAS">LUNAS</option>
+                                        <option value="PIUTANG">PIUTANG</option>
+                                    </select>
+                                </div>
+                                <div class="mb-5 w-full">
+                                    <label for="harga"
+                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Harga</label>
+                                    <input type="number" id="harga" name="harga"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        required readonly />
+                                </div>
+                                <div class="mb-5 w-full">
+                                    <label for="qty"
+                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Qty</label>
+                                    <input type="number" id="qty" name="qty"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        required />
+                                </div>
+                                <div class="mb-5 w-full">
+                                    <label for="total_harga"
+                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Total Harga</label>
+                                    <input type="number" id="total_harga" name="total_harga"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        required readonly />
+                                </div>
+                                <div class="px-2 bg-red-100">
+                                    Hapus
+                                </div>
+                            </div>`;
             $('#produkContainer').append(newRow);
         }
     </script>
