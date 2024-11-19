@@ -157,7 +157,7 @@
                             <label for="id_konsinyasi"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Konsinyasi</label>
                             <select class="js-example-placeholder-single js-states form-control w-full m-6"
-                                name="id_konsinyasi_edit" id="id_konsinyasi" data-placeholder="Pilih Konsinyasi">
+                                name="id_konsinyasi" id="id_konsinyasi_edit" data-placeholder="Pilih Konsinyasi">
                                 <option value="">Pilih...</option>
                                 @foreach ($konsinyasi as $k)
                                     <option value="{{ $k->id }}">{{ $k->konsinyasi }}</option>
