@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Konsumen;
 use App\Models\Penjualan;
+use App\Models\Produk;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -26,8 +27,10 @@ class PenjualanController extends Controller
     public function create()
     {
         $konsumen = Konsumen::all();
+        $produk = Produk::all();
         return view('page.penjualan.create')->with([
             'konsumen' => $konsumen,
+            'produk' => $produk,
         ]);
     }
 
