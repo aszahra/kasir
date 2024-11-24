@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pembelian;
+use App\Models\Produk;
+use App\Models\Supplier;
 use Illuminate\Http\Request;
 
 class PembelianController extends Controller
@@ -23,7 +25,7 @@ class PembelianController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
