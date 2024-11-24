@@ -6,6 +6,7 @@ use App\Models\Pembelian;
 use App\Models\Produk;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PembelianController extends Controller
 {
@@ -25,7 +26,12 @@ class PembelianController extends Controller
      */
     public function create()
     {
-
+        $supplier = Supplier::all();
+        $produk = Produk::all();
+        return view('page.pembelian.create')->with([
+            'supplier' => $supplier,
+            'produk' => $produk,
+        ]);
     }
 
     /**
@@ -33,7 +39,19 @@ class PembelianController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $kode_pembelian = date('YmdHis');
+        $data = [
+            'kode_pembelian' => $kode_pembelian,
+            'tgl_pembelian' => $request->input('tgl_pembelian'),
+            'id_supplier' => $request->input('id_supplier'),
+            'id_user' => Auth::user()->id,
+        ];
+
+        Pembelian::create($data);
+
+        return redirect()
+            ->route('pembelian.index')
+            ->with('message', 'Data sudah ditambahkan');
     }
 
     /**
