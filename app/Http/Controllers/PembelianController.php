@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pembelian;
 use Illuminate\Http\Request;
 
 class PembelianController extends Controller
@@ -11,7 +12,10 @@ class PembelianController extends Controller
      */
     public function index()
     {
-        //
+        $data = Pembelian::paginate(5);
+        return view('page.pembelian.index')->with([
+            'pembelian' => $data
+        ]);
     }
 
     /**
