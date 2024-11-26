@@ -73,8 +73,8 @@
                                     <div class="mb-5 w-full">
                                         <label for="produk${rowCount}"
                                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Produk</label>
-                                        <select class="js-example-placeholder-single js-states form-control w-full m-6"
-                                            id="produk${rowCount}" name="produk[]" data-placeholder="Pilih Produk">
+                                        <select id="produk${rowCount}" name="produk[]" class="form-control w-full"
+                                             data-placeholder="Pilih Produk" onchange="getProduk(${rowCount})">
                                             <option value="">Pilih...</option>
                                             @foreach ($produk as $k)
                                                 <option value="{{ $k->id }}">
