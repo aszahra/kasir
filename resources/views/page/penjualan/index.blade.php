@@ -35,7 +35,7 @@
                                         STATUS PEMBELIAN
                                     </th>
                                     <th scope="col" class="px-6 py-3">
-                                        ACTION
+                                        
                                     </th>
                                 </tr>
                             </thead>
@@ -59,7 +59,12 @@
                                             {{ $p->status_pembelian }}
                                         </td>
                                         <td class="px-6 py-4">
-                                            $2999
+                                            <button type="button" onclick="editSourceModal(this)"
+                                                class="bg-amber-500 hover:bg-amber-600 px-3 py-1 rounded-md text-xs text-white">
+                                                Edit
+                                            </button>
+                                            <button onclick="return"
+                                                class="bg-red-500 hover:bg-bg-red-300 px-3 py-1 rounded-md text-xs text-white">Delete</button>
                                         </td>
                                     </tr>
                                 @endforeach

@@ -40,6 +40,18 @@ class PenjualanController extends Controller
     public function store(Request $request)
     {
         $kode_penjualan = date('YmdHis');
+
+        $produk = $request->input('produk', []);
+        foreach ($produk as $index =>$p){
+        $data = [
+            'kode_penjualan' => $kode_penjualan,
+            'id_produk' => $p,
+            'qty' => $request->input('qty'),
+            'total' => $request->input('total'),
+        ];
+        DetailPenjualan::create($dataDetail);
+    }
+
         $data = [
             'kode_penjualan' => $kode_penjualan,
             'tgl_penjualan' => $request->input('tgl_penjualan'),
