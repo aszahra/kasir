@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DetailPenjualan;
 use App\Models\Konsumen;
 use App\Models\Penjualan;
 use App\Models\Produk;
@@ -43,11 +44,11 @@ class PenjualanController extends Controller
 
         $produk = $request->input('produk', []);
         foreach ($produk as $index =>$p){
-        $data = [
+        $dataDetail = [
             'kode_penjualan' => $kode_penjualan,
             'id_produk' => $p,
-            'qty' => $request->input('qty'),
-            'total' => $request->input('total'),
+            'qty' => $request->qty[$index],
+            'total' => $request->total_harga[$index],
         ];
         DetailPenjualan::create($dataDetail);
     }
