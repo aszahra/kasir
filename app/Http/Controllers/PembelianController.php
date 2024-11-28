@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DetailPembelian;
 use App\Models\Pembelian;
 use App\Models\Produk;
 use App\Models\Supplier;
@@ -40,6 +41,7 @@ class PembelianController extends Controller
     public function store(Request $request)
     {
         $kode_pembelian = date('YmdHis');
+
         $data = [
             'kode_pembelian' => $kode_pembelian,
             'tgl_pembelian' => $request->input('tgl_pembelian'),
