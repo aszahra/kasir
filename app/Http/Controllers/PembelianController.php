@@ -42,6 +42,17 @@ class PembelianController extends Controller
     {
         $kode_pembelian = date('YmdHis');
 
+        $produk = $request->input('produk', []);
+        foreach ($produk as $index =>$p){
+        $dataDetail = [
+            'kode_pembelian' => $kode_pembelian,
+            'id_produk' => $p,
+            'qty' => $request->qty[$index],
+            'total' => $request->total_harga[$index],
+        ];
+        DetailPembelian::create($dataDetail);
+    }
+    
         $data = [
             'kode_pembelian' => $kode_pembelian,
             'tgl_pembelian' => $request->input('tgl_pembelian'),
